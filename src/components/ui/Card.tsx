@@ -5,21 +5,25 @@ interface CardProps {
   children: React.ReactNode;
   className?: string;
   hover?: boolean;
+  onClick?: () => void;
 }
 
 export const Card: React.FC<CardProps> = ({ 
   children, 
   className = '',
-  hover = true 
+  hover = true,
+  onClick
 }) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       whileHover={hover ? { y: -2, boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)' } : {}}
+      onClick={onClick}
       className={`
         bg-white rounded-lg shadow-md border border-gray-200
         transition-all duration-200
+        ${onClick ? 'cursor-pointer' : ''}
         ${className}
       `}
     >

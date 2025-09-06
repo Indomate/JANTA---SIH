@@ -10,7 +10,7 @@ interface AuthContextType {
   userProfile: UserProfile | null;
   publicAdminData: PublicAdmin | null;
   loading: boolean;
-  signIn: (email: string, password: string) => Promise<void>;
+  signIn: (email: string, password: string, expectedRole?: UserRole) => Promise<void>;
   signUp: (email: string, password: string) => Promise<void>;
   signOut: () => Promise<void>;
   updateProfile: (profile: Partial<UserProfile>) => Promise<void>;
@@ -94,8 +94,29 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     setUserProfile(profile);
   };
 
-  const signIn = async (email: string, password: string) => {
+  const signIn = async (email: string, password: string, expectedRole?: UserRole) => {
     try {
+      // For admin login, validate credentials first
+      if (expectedRole === 'admin') {
+        if (email !== 'vivek@gmail.com' || password !== 'admin') {
+          throw new Error('Invalid admin credentials');
+        }
+      }
+
+      // For public admin, check if they exist in the database
+      if (expectedRole === 'public_admin') {
+        const { data: publicAdmin } = await supabase
+          .from('public_admins')
+          .select('*')
+          .eq('email', email)
+          .eq('is_active', true)
+          .single();
+
+        if (!publicAdmin) {
+          throw new Error('You are not authorized as a Public Admin. Contact the administrator.');
+        }
+      }
+
       const { error } = await supabase.auth.signInWithPassword({ email, password });
       if (error) throw error;
       toast.success('Signed in successfully!');

@@ -45,19 +45,19 @@ export const AuthPage: React.FC = () => {
   const selectedTab = authTabs.find(tab => tab.key === authMode)!;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 via-blue-50 to-purple-50 flex items-center justify-center p-4">
-      <div className="w-full max-w-md">
+    <div className="min-h-screen bg-gradient-to-br from-green-50 via-blue-50 to-purple-50 flex items-center justify-center p-4 sm:p-6 lg:p-8">
+      <div className="w-full max-w-md mx-auto">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-center mb-8"
+          className="text-center mb-6 sm:mb-8"
         >
-          <div className="bg-white p-4 rounded-full w-20 h-20 mx-auto mb-4 shadow-lg">
-            <Shield className="h-12 w-12 text-green-600 mx-auto" />
+          <div className="bg-white p-3 sm:p-4 rounded-full w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-4 shadow-lg">
+            <Shield className="h-10 w-10 sm:h-12 sm:w-12 text-green-600 mx-auto" />
           </div>
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">JANTA</h1>
-          <p className="text-gray-600">Jharkhand Actionable Network</p>
+          <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">JANTA</h1>
+          <p className="text-sm sm:text-base text-gray-600">Jharkhand Actionable Network</p>
           <p className="text-sm text-gray-500">for Transparent Administration</p>
         </motion.div>
 
@@ -66,9 +66,9 @@ export const AuthPage: React.FC = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
-          className="mb-6"
+          className="mb-4 sm:mb-6"
         >
-          <div className="grid grid-cols-3 gap-2 p-1 bg-white rounded-lg shadow-sm">
+          <div className="grid grid-cols-3 gap-1 sm:gap-2 p-1 bg-white rounded-lg shadow-sm">
             {authTabs.map((tab) => (
               <button
                 key={tab.key}
@@ -77,17 +77,17 @@ export const AuthPage: React.FC = () => {
                   setFormType('login'); // Reset to login when switching tabs
                 }}
                 className={`
-                  relative p-3 rounded-md text-center transition-all duration-200
+                  relative p-2 sm:p-3 rounded-md text-center transition-all duration-200
                   ${authMode === tab.key 
                     ? `${tab.bgColor} ${tab.borderColor} border-2 shadow-sm` 
                     : 'hover:bg-gray-50'
                   }
                 `}
               >
-                <tab.icon className={`h-5 w-5 mx-auto mb-1 ${
+                <tab.icon className={`h-4 w-4 sm:h-5 sm:w-5 mx-auto mb-1 ${
                   authMode === tab.key ? tab.color : 'text-gray-400'
                 }`} />
-                <div className={`text-xs font-medium ${
+                <div className={`text-xs sm:text-sm font-medium ${
                   authMode === tab.key ? tab.color : 'text-gray-600'
                 }`}>
                   {tab.label}
@@ -108,7 +108,7 @@ export const AuthPage: React.FC = () => {
             key={authMode}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className={`text-center text-sm mt-3 ${selectedTab.color}`}
+            className={`text-center text-xs sm:text-sm mt-2 sm:mt-3 px-2 ${selectedTab.color}`}
           >
             {selectedTab.description}
           </motion.p>
@@ -124,13 +124,12 @@ export const AuthPage: React.FC = () => {
             transition={{ duration: 0.3 }}
           >
             {authMode === 'admin' ? (
-              <AdminLoginForm authMode={authMode} />
+              <AdminLoginForm />
             ) : authMode === 'public_admin' ? (
               <LoginForm 
                 mode="public_admin"
                 onToggleMode={() => setFormType(formType === 'login' ? 'signup' : 'login')}
                 formType={formType}
-                authMode={authMode}
               />
             ) : (
               // Citizen mode
@@ -139,7 +138,6 @@ export const AuthPage: React.FC = () => {
                   mode="citizen"
                   onToggleMode={() => setFormType('signup')}
                   formType={formType}
-                  authMode={authMode}
                 />
               ) : (
                 <SignupForm onToggleMode={() => setFormType('login')} />
@@ -153,7 +151,7 @@ export const AuthPage: React.FC = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.5 }}
-          className="text-center mt-8 text-xs text-gray-500"
+          className="text-center mt-6 sm:mt-8 text-xs text-gray-500 px-4"
         >
           <p>© 2025 Government of Jharkhand</p>
           <p>Empowering citizens through technology</p>

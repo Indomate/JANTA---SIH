@@ -1,15 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import { Header } from '../components/layout/Header';
 import { AdminSidebar } from '../components/layout/AdminSidebar';
 
 export const AdminLayout: React.FC = () => {
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
   return (
     <div className="min-h-screen bg-gray-50">
-      <Header />
+      <Header onMenuToggle={() => setSidebarOpen(!sidebarOpen)} showMenuButton={true} />
       <div className="flex">
-        <AdminSidebar />
-        <main className="flex-1 p-6">
+        <AdminSidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
+        <main className="flex-1 p-4 sm:p-6 lg:ml-64">
           <Outlet />
         </main>
       </div>

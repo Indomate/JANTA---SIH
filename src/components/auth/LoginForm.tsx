@@ -22,7 +22,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({ mode, onToggleMode, formTy
     e.preventDefault();
     setLoading(true);
     try {
-      await signIn(email, password);
+      await signIn(email, password, mode);
     } catch (error) {
       // Error handled by context
     } finally {
@@ -51,20 +51,20 @@ export const LoginForm: React.FC<LoginFormProps> = ({ mode, onToggleMode, formTy
   const Icon = currentConfig.icon;
 
   return (
-    <Card className="p-8 w-full max-w-md">
-      <div className="text-center mb-6">
+    <Card className="p-4 sm:p-6 lg:p-8 w-full max-w-md">
+      <div className="text-center mb-4 sm:mb-6">
         <motion.div
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
-          className={`${currentConfig.bgColor} p-3 rounded-full w-16 h-16 mx-auto mb-4`}
+          className={`${currentConfig.bgColor} p-2 sm:p-3 rounded-full w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-3 sm:mb-4`}
         >
-          <Icon className="h-10 w-10 text-white" />
+          <Icon className="h-8 w-8 sm:h-10 sm:w-10 text-white" />
         </motion.div>
-        <h2 className="text-2xl font-bold text-gray-900">{currentConfig.title}</h2>
-        <p className="text-gray-600 mt-2">{currentConfig.subtitle}</p>
+        <h2 className="text-xl sm:text-2xl font-bold text-gray-900">{currentConfig.title}</h2>
+        <p className="text-sm sm:text-base text-gray-600 mt-1 sm:mt-2 px-2">{currentConfig.subtitle}</p>
       </div>
 
-      <form onSubmit={handleSubmit} className="space-y-4">
+      <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-4">
         <Input
           type="email"
           label="Email Address"
@@ -93,7 +93,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({ mode, onToggleMode, formTy
       </form>
 
       {mode === 'citizen' && (
-        <div className="mt-6 text-center">
+        <div className="mt-4 sm:mt-6 text-center">
           <p className="text-sm text-gray-600">
             Don't have an account?{' '}
             <button
@@ -107,7 +107,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({ mode, onToggleMode, formTy
       )}
 
       {mode === 'public_admin' && (
-        <div className="mt-6 p-4 bg-blue-50 rounded-lg">
+        <div className="mt-4 sm:mt-6 p-3 sm:p-4 bg-blue-50 rounded-lg">
           <p className="text-xs text-blue-700 text-center">
             <strong>Note:</strong> Public Admin accounts must be activated by the State Administrator.
             Contact your system administrator if you don't have access.

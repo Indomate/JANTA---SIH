@@ -93,14 +93,14 @@ export const PublicAdminDashboard: React.FC = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
       >
-        <h1 className="text-3xl font-bold text-gray-900">Public Admin Dashboard</h1>
+        <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">Public Admin Dashboard</h1>
         <p className="text-gray-600 mt-2">
           Managing {publicAdminData?.category} reports in {publicAdminData?.district}
         </p>
       </motion.div>
 
       {/* Stats Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
         <StatCard
           title="New Reports"
           value={stats.submitted}
@@ -133,8 +133,8 @@ export const PublicAdminDashboard: React.FC = () => {
 
       {/* Recent Reports */}
       <div>
-        <h2 className="text-xl font-semibold text-gray-900 mb-4">Recent Reports</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <h2 className="text-lg sm:text-xl font-semibold text-gray-900 mb-4">Recent Reports</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {reports.map((report) => (
             <motion.div
               key={report.id}

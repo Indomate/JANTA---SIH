@@ -137,7 +137,7 @@ export const ReportForm: React.FC<ReportFormProps> = ({ onSuccess }) => {
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <Input
             label="Title"
             value={formData.title}
@@ -155,7 +155,7 @@ export const ReportForm: React.FC<ReportFormProps> = ({ onSuccess }) => {
           />
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <Select
             label="Category"
             value={formData.category}
@@ -175,7 +175,7 @@ export const ReportForm: React.FC<ReportFormProps> = ({ onSuccess }) => {
           )}
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <Input
             label="Sector Number"
             value={formData.sector_number}
@@ -185,7 +185,7 @@ export const ReportForm: React.FC<ReportFormProps> = ({ onSuccess }) => {
           />
 
           {location && (
-            <div className="flex items-center space-x-2 p-3 bg-green-50 rounded-md">
+            <div className="flex items-center space-x-2 p-2 sm:p-3 bg-green-50 rounded-md">
               <MapPin className="h-4 w-4 text-green-600" />
               <span className="text-sm text-green-700">Location detected</span>
             </div>
@@ -218,9 +218,9 @@ export const ReportForm: React.FC<ReportFormProps> = ({ onSuccess }) => {
           <label className="block text-sm font-medium text-gray-700 mb-1">
             Upload Images (Optional)
           </label>
-          <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+          <div className="mt-1 flex justify-center px-4 sm:px-6 pt-4 sm:pt-5 pb-4 sm:pb-6 border-2 border-gray-300 border-dashed rounded-md">
             <div className="space-y-1 text-center">
-              <Camera className="mx-auto h-12 w-12 text-gray-400" />
+              <Camera className="mx-auto h-8 w-8 sm:h-12 sm:w-12 text-gray-400" />
               <div className="flex text-sm text-gray-600">
                 <label htmlFor="file-upload" className="relative cursor-pointer bg-white rounded-md font-medium text-green-600 hover:text-green-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-green-500">
                   <span>Upload files</span>
@@ -233,25 +233,25 @@ export const ReportForm: React.FC<ReportFormProps> = ({ onSuccess }) => {
                     onChange={handleImageUpload}
                   />
                 </label>
-                <p className="pl-1">or drag and drop</p>
+                <p className="pl-1 hidden sm:inline">or drag and drop</p>
               </div>
               <p className="text-xs text-gray-500">PNG, JPG up to 10MB each (max 5 images)</p>
             </div>
           </div>
 
           {images.length > 0 && (
-            <div className="mt-4 grid grid-cols-2 md:grid-cols-3 gap-4">
+            <div className="mt-4 grid grid-cols-2 sm:grid-cols-3 gap-4">
               {images.map((image, index) => (
                 <div key={index} className="relative">
                   <img
                     src={URL.createObjectURL(image)}
                     alt={`Upload ${index + 1}`}
-                    className="h-20 w-full object-cover rounded-md"
+                    className="h-16 sm:h-20 w-full object-cover rounded-md"
                   />
                   <button
                     type="button"
                     onClick={() => removeImage(index)}
-                    className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full h-6 w-6 flex items-center justify-center text-xs hover:bg-red-600"
+                    className="absolute -top-1 -right-1 sm:-top-2 sm:-right-2 bg-red-500 text-white rounded-full h-5 w-5 sm:h-6 sm:w-6 flex items-center justify-center text-xs hover:bg-red-600"
                   >
                     ×
                   </button>

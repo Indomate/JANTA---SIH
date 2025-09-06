@@ -16,7 +16,7 @@ export const AdminLoginForm: React.FC = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      await signIn(email, password);
+      await signIn(email, password, 'admin');
     } catch (error) {
       // Error handled by context
     } finally {
@@ -25,20 +25,20 @@ export const AdminLoginForm: React.FC = () => {
   };
 
   return (
-    <Card className="p-8 w-full max-w-md">
-      <div className="text-center mb-6">
+    <Card className="p-4 sm:p-6 lg:p-8 w-full max-w-md">
+      <div className="text-center mb-4 sm:mb-6">
         <motion.div
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
-          className="bg-purple-600 p-3 rounded-full w-16 h-16 mx-auto mb-4"
+          className="bg-purple-600 p-2 sm:p-3 rounded-full w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-3 sm:mb-4"
         >
-          <Shield className="h-10 w-10 text-white" />
+          <Shield className="h-8 w-8 sm:h-10 sm:w-10 text-white" />
         </motion.div>
-        <h2 className="text-2xl font-bold text-gray-900">State Administrator</h2>
-        <p className="text-gray-600 mt-2">System-wide administration access</p>
+        <h2 className="text-xl sm:text-2xl font-bold text-gray-900">State Administrator</h2>
+        <p className="text-sm sm:text-base text-gray-600 mt-1 sm:mt-2 px-2">System-wide administration access</p>
       </div>
 
-      <form onSubmit={handleSubmit} className="space-y-4">
+      <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-4">
         <Input
           type="email"
           label="Email Address"
@@ -67,7 +67,7 @@ export const AdminLoginForm: React.FC = () => {
         </Button>
       </form>
 
-      <div className="mt-6 p-4 bg-purple-50 rounded-lg">
+      <div className="mt-4 sm:mt-6 p-3 sm:p-4 bg-purple-50 rounded-lg">
         <p className="text-xs text-purple-700 text-center">
           <strong>Secure Access:</strong> This is a restricted administrative interface.
           All actions are logged and monitored.
